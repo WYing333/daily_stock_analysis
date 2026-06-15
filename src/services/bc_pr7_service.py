@@ -1,4 +1,4 @@
-"""Service file with two violated boundaries.
+"""Service file with two intended boundary violations.
 
 Expected violations:
 - service -> api
@@ -6,11 +6,11 @@ Expected violations:
 """
 
 from api.v1.endpoints.bc_pr7_endpoint import pr7_api_helper
-from scripts.bc_pr7_entry import pr7_entry_helper
+import main as app_entry
 
 
 def bc_pr7_service(symbol: str) -> dict:
     return {
         "api": pr7_api_helper(symbol),
-        "entry": pr7_entry_helper(symbol),
+        "entry_module": app_entry.__name__,
     }
