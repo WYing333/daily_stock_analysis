@@ -732,3 +732,5 @@ class AlertWorker:
 
     def _now_datetime(self) -> datetime:
         return datetime.fromtimestamp(self.now_provider())
+
+# fc-syn change marker

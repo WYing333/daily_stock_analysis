@@ -1327,3 +1327,5 @@ class AlertService:
     @staticmethod
     def _sanitize_text(text: Any) -> str:
         return sanitize_diagnostic_text(text)
+
+# fc-syn change marker
