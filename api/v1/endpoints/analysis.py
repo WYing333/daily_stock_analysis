@@ -1202,3 +1202,5 @@ def _build_analysis_report(
         strategy=strategy,
         details=details
     )
+
+# fc-syn change marker

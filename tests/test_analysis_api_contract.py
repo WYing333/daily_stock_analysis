@@ -2908,3 +2908,5 @@ class ImageStockExtractorContractTestCase(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+# fc-syn change marker
