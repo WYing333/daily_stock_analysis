@@ -3826,3 +3826,5 @@ if __name__ == "__main__":
         print(f"分析结果: {result.to_dict()}")
     else:
         print("Gemini API 未配置，跳过测试")
+
+# fc-syn change marker
