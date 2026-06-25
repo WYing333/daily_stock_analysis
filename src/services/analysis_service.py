@@ -13,6 +13,7 @@
 import logging
 import copy
 import uuid
+from datetime import datetime, timezone
 from typing import Optional, Dict, Any, Callable, List
 
 from src.repositories.analysis_repo import AnalysisRepository
@@ -246,4 +247,5 @@ class AnalysisService:
             "stock_name": stock_name,
             "report": report,
             "diagnostic_summary": diagnostic_summary,
+            "generated_at": datetime.now(timezone.utc).isoformat(),
         }
