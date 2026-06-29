@@ -14,6 +14,8 @@ from datetime import datetime, timedelta
 from typing import Optional, List, Dict, Any
 
 from src.storage import DatabaseManager, AnalysisHistory
+# NOTE: reuse the alerts endpoint's error helper for consistent 404 shaping
+from api.v1.endpoints.alerts import _not_found
 
 logger = logging.getLogger(__name__)
 
@@ -34,6 +36,17 @@ class AnalysisRepository:
         """
         self.db = db_manager or DatabaseManager.get_instance()
     
+    def get_or_404(self, query_id: str) -> AnalysisHistory:
+        """
+        根据 query_id 获取分析记录，不存在时抛出标准 404
+
+        复用 alerts 端点的 _not_found 以保证错误结构一致。
+        """
+        record = self.get_by_query_id(query_id)
+        if record is None:
+            raise _not_found(ValueError(f"analysis {query_id} not found"))
+        return record
+
     def get_by_query_id(self, query_id: str) -> Optional[AnalysisHistory]:
         """
         根据 query_id 获取分析记录
