@@ -25,6 +25,7 @@ from api.v1.endpoints import (
     stocks,
     system_config,
     usage,
+    watchlist,
 )
 
 # 创建 v1 版本主路由
@@ -100,6 +101,12 @@ router.include_router(
     alphasift.router,
     prefix="/alphasift",
     tags=["AlphaSift"]
+)
+
+router.include_router(
+    watchlist.router,
+    prefix="/watchlist",
+    tags=["Watchlist"]
 )
 
 router.include_router(
