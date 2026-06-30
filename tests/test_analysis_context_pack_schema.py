@@ -72,7 +72,7 @@ def test_pack_version_is_fixed_to_p1_contract() -> None:
 
     assert copied.pack_version == PACK_VERSION
     assert copied.metadata == {"trace_id": "q-1"}
-    assert pack.to_safe_dict()["pack_version"] == PACK_VERSION
+    assert pack.to_safe_dict(redact_sensitive_mapping)["pack_version"] == PACK_VERSION
 
 
 def test_pack_model_copy_preserves_shallow_copy_semantics() -> None:
@@ -327,7 +327,7 @@ def test_pack_safe_dict_redacts_sensitive_metadata_but_keeps_business_fields() -
         metadata={"webhook_url": "https://hooks.example.test/abc", "trace_id": "q-1"},
     )
 
-    safe = pack.to_safe_dict()
+    safe = pack.to_safe_dict(redact_sensitive_mapping)
 
     assert safe["metadata"]["webhook_url"] == "[REDACTED]"
     assert safe["metadata"]["trace_id"] == "q-1"
