@@ -73,7 +73,7 @@ from src.market_phase_summary import extract_market_phase_summary, render_market
 from src.report_language import get_localized_stock_name, normalize_report_language
 from src.schemas.decision_action import build_action_fields
 from src.services.name_to_code_resolver import resolve_name_to_code
-from src.services.stock_code_utils import is_code_like
+from src.utils.data_processing import is_code_like
 from src.services.task_queue import (
     get_task_queue,
     DuplicateTaskError,

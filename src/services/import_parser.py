@@ -17,7 +17,7 @@ from typing import List, Optional, Tuple
 import pandas as pd
 
 from src.services.name_to_code_resolver import resolve_name_to_code
-from src.services.stock_code_utils import is_code_like, normalize_code
+from src.utils.data_processing import is_code_like, normalize_code
 
 logger = logging.getLogger(__name__)
 
