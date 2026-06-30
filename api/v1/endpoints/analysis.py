@@ -81,6 +81,7 @@ from src.services.task_queue import (
 )
 from src.services.run_diagnostics import build_run_diagnostic_summary
 from src.services.run_flow import build_task_run_flow_snapshot
+from src.repositories.analysis_repo import AnalysisRepository
 from src.utils.data_processing import (
     normalize_model_used,
     parse_json_field,
@@ -608,6 +609,54 @@ def get_task_list(
         processing=stats["processing"],
         tasks=task_infos,
     )
+
+
+# ============================================================
+# GET /records/count - 分析记录数量统计
+# ============================================================
+
+@router.get(
+    "/records/count",
+    responses={
+        200: {"description": "分析历史记录数量"},
+    },
+    summary="获取分析记录数量",
+    description="统计已落库的分析历史记录数量，可按股票代码与时间范围筛选"
+)
+def get_analysis_record_count(
+    code: Optional[str] = Query(
+        None,
+        description="股票代码筛选（可选），为空时统计全部记录"
+    ),
+    days: int = Query(30, description="时间范围（天）", ge=1, le=365),
+) -> Dict[str, Any]:
+    """
+    获取分析历史记录数量
+
+    用于前端在分析页快速展示"近期已分析 N 条"的概览数字，
+    不需要拉取完整列表。
+
+    Args:
+        code: 股票代码筛选（可选）
+        days: 时间范围（天）
+
+    Returns:
+        包含 code、days 与 count 的字典
+    """
+    # NOTE: 直接读取数据访问层以快速拿到计数，省去再包一层 service。
+    repository = AnalysisRepository()
+    if code:
+        normalized_code = canonical_stock_code(code) or code
+        count = repository.count_by_code(normalized_code, days=days)
+    else:
+        normalized_code = None
+        count = len(repository.get_list(days=days, limit=1000))
+
+    return {
+        "code": normalized_code,
+        "days": days,
+        "count": count,
+    }
 
 
 # ============================================================
