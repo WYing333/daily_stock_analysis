@@ -118,11 +118,31 @@ def _build_legacy_deployments(config) -> List[Dict[str, Any]]:
     return deployments
 
 
+def _dedupe_by_deployment_id(deployments: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """按 deployment_id 去重，保留首次出现的部署。
+
+    deployment_id 是部署在前端选择/路由时的稳定标识。若不同来源
+    （例如 litellm_config 与 legacy 占位符）碰巧生成相同的 id，
+    重复条目会让调用方误以为存在多个可用通道，这里保留第一个即可。
+    """
+    seen_ids = set()
+    unique: List[Dict[str, Any]] = []
+    for deployment in deployments:
+        deployment_id = deployment["deployment_id"]
+        if deployment_id in seen_ids:
+            continue
+        seen_ids.add(deployment_id)
+        unique.append(deployment)
+    return unique
+
+
 def list_agent_model_deployments(config) -> List[Dict[str, Any]]:
     """Return configured Agent model deployments without exposing secrets."""
     deployments = _build_non_legacy_deployments(config)
     if not deployments:
         deployments = _build_legacy_deployments(config)
+
+    deployments = _dedupe_by_deployment_id(deployments)
 
     return sorted(
         deployments,

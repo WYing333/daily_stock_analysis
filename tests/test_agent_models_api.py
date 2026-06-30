@@ -9,7 +9,10 @@ from unittest.mock import MagicMock, patch
 
 from api.v1.endpoints import agent
 from src.config import Config
-from src.services.agent_model_service import list_agent_model_deployments
+from src.services.agent_model_service import (
+    _dedupe_by_deployment_id,
+    list_agent_model_deployments,
+)
 
 
 def _build_config(**overrides):
@@ -202,6 +205,34 @@ class AgentModelsApiTestCase(unittest.TestCase):
         )
 
         self.assertEqual(list_agent_model_deployments(config), [])
+
+    def test_dedupe_keeps_first_deployment_sharing_a_deployment_id(self) -> None:
+        deployments = [
+            {"deployment_id": "litellm_config:0", "model": "gemini/gemini-2.5-flash"},
+            {"deployment_id": "litellm_config:1", "model": "openai/gpt-4o-mini"},
+            {"deployment_id": "litellm_config:0", "model": "gemini/gemini-2.5-flash-dup"},
+        ]
+
+        unique = _dedupe_by_deployment_id(deployments)
+
+        self.assertEqual([item["deployment_id"] for item in unique], ["litellm_config:0", "litellm_config:1"])
+        # The first occurrence wins, so the later collision is dropped entirely.
+        self.assertEqual(unique[0]["model"], "gemini/gemini-2.5-flash")
+
+    def test_models_endpoint_never_returns_duplicate_deployment_ids(self) -> None:
+        config = _build_config(
+            llm_model_list=[
+                {"model_name": "__legacy_gemini__", "litellm_params": {"model": "__legacy_gemini__", "api_key": "g-1"}},
+                {"model_name": "__legacy_gemini__", "litellm_params": {"model": "__legacy_gemini__", "api_key": "g-2"}},
+                {"model_name": "__legacy_openai__", "litellm_params": {"model": "__legacy_openai__", "api_key": "o-1"}},
+            ],
+            openai_base_url="https://openai.example.com/v1",
+        )
+
+        deployments = list_agent_model_deployments(config)
+        deployment_ids = [item["deployment_id"] for item in deployments]
+
+        self.assertEqual(len(deployment_ids), len(set(deployment_ids)))
 
 
 class AgentModelsEndpointTestCase(unittest.TestCase):
