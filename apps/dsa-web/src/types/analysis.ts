@@ -105,6 +105,8 @@ export interface ReportSummary {
   trendPrediction: string;
   sentimentScore: number;
   sentimentLabel?: SentimentLabel;
+  /** Conclusion confidence (0-100), derived from how far sentiment deviates from neutral */
+  confidenceLevel?: number;
 }
 
 /** Strategy section */

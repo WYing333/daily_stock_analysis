@@ -1226,7 +1226,8 @@ def _build_analysis_report(
         action_label=action_fields["action_label"],
         trend_prediction=summary_data.get("trend_prediction"),
         sentiment_score=summary_data.get("sentiment_score"),
-        sentiment_label=summary_data.get("sentiment_label")
+        sentiment_label=summary_data.get("sentiment_label"),
+        confidence_level=summary_data.get("confidence_level")
     )
 
     strategy = None

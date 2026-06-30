@@ -1133,6 +1133,35 @@ class AnalysisApiContractTestCase(unittest.TestCase):
             "intraday",
         )
 
+    def test_build_analysis_response_includes_confidence_level_derived_from_sentiment(self) -> None:
+        service = AnalysisService()
+
+        result = service._build_analysis_response(
+            SimpleNamespace(
+                code="600519",
+                name="贵州茅台",
+                current_price=1234.56,
+                change_pct=1.23,
+                model_used="test-model",
+                analysis_summary="summary",
+                operation_advice="hold",
+                trend_prediction="up",
+                sentiment_score=80,
+                news_summary="news",
+                technical_analysis="tech",
+                fundamental_analysis="fundamental",
+                risk_warning="risk",
+                get_sniper_points=lambda: {},
+            ),
+            "q1",
+            report_type="full",
+        )
+
+        summary = result["report"]["summary"]
+        self.assertIn("confidence_level", summary)
+        # |80 - 50| * 2 = 60
+        self.assertEqual(summary["confidence_level"], 60)
+
     def test_analysis_service_passes_analysis_phase_to_pipeline(self) -> None:
         service = AnalysisService()
         pipeline_instance = MagicMock()

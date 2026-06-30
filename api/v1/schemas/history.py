@@ -159,6 +159,12 @@ class ReportSummary(BaseModel):
         description="情绪评分（历史数据可能超出 0-100 范围，读取时不做约束）",
     )
     sentiment_label: Optional[str] = Field(None, description="情绪标签")
+    confidence_level: Optional[int] = Field(
+        None,
+        ge=0,
+        le=100,
+        description="结论置信度（0-100），由情绪评分偏离中性的幅度推导，越高表示方向性判断越明确",
+    )
 
 
 class ReportStrategy(BaseModel):
