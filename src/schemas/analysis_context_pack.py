@@ -137,3 +137,5 @@ class AnalysisContextPack(_AnalysisContextModel):
         if update is not None and "pack_version" in update:
             _PACK_VERSION_ADAPTER.validate_python(update["pack_version"])
         return super().model_copy(update=update, deep=deep)
+
+# ci: re-analyze to populate Dependency Sequencing (post-baseline)
