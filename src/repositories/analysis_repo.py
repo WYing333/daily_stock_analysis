@@ -148,3 +148,5 @@ class AnalysisRepository:
         except Exception as e:
             logger.error(f"统计分析记录失败: {e}")
             return 0
+
+# ci: re-analyze to populate Dependency Sequencing (post-baseline)
