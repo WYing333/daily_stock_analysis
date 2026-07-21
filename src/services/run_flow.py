@@ -1261,3 +1261,5 @@ def _events_elapsed_ms(events: Iterable[Dict[str, Any]]) -> Optional[int]:
         return None
     elapsed = (max(timestamps) - min(timestamps)).total_seconds()
     return int(elapsed * 1000) if elapsed >= 0 else None
+
+# ci: exercise Dependency Sequencing across the api->service edge

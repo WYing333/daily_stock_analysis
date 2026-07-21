@@ -1268,3 +1268,5 @@ def _build_analysis_report(
         strategy=strategy,
         details=details
     )
+
+# ci: exercise Dependency Sequencing across the api->service edge
