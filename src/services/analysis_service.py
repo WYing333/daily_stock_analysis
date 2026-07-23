@@ -174,6 +174,12 @@ class AnalysisService:
         # 计算情绪标签
         report_language = normalize_report_language(getattr(result, "report_language", "zh"))
         sentiment_label = get_sentiment_label(result.sentiment_score, report_language)
+        # 置信度：情绪偏离中性（50）的幅度越大，方向性结论越明确，置信度越高（0-100）
+        confidence_level = (
+            min(100, abs(int(result.sentiment_score) - 50) * 2)
+            if result.sentiment_score is not None
+            else None
+        )
         stock_name = get_localized_stock_name(getattr(result, "name", None), result.code, report_language)
         action_fields = build_action_fields(
             operation_advice=getattr(result, "operation_advice", None),
@@ -224,6 +230,7 @@ class AnalysisService:
                 "trend_prediction": localize_trend_prediction(result.trend_prediction, report_language),
                 "sentiment_score": result.sentiment_score,
                 "sentiment_label": sentiment_label,
+                "confidence_level": confidence_level,
             },
             "strategy": {
                 "ideal_buy": sniper_points.get("ideal_buy"),
