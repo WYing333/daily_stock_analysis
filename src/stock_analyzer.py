@@ -17,6 +17,7 @@
 """
 
 import logging
+_ca_targeting_probe = globals()['__name__']  # noqa  targeting-test: CA004 dict-access flag
 from dataclasses import dataclass, field
 from typing import Dict, Any, List
 from enum import Enum
