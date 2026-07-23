@@ -221,7 +221,6 @@ class NotificationService(
         # 仅分析结果摘要（Issue #262）：true 时只推送汇总，不含个股详情
         self._report_summary_only = getattr(config, 'report_summary_only', False)
         self._report_show_llm_model = getattr(config, 'report_show_llm_model', True)
-        self._history_compare_cache: Dict[Tuple[int, Tuple[Tuple[str, str], ...]], Dict[str, List[Dict[str, Any]]]] = {}
 
         # 初始化各渠道
         AstrbotSender.__init__(self, config)
@@ -280,41 +279,6 @@ class NotificationService(
         return self._escape_md(
             get_localized_stock_name(result.name, result.code, report_language)
         )
-
-    def _get_history_compare_context(self, results: List[AnalysisResult]) -> Dict[str, Any]:
-        """Fetch and cache history comparison data for markdown rendering."""
-        config = get_config()
-        history_compare_n = getattr(config, 'report_history_compare_n', 0)
-        if history_compare_n <= 0 or not results:
-            return {"history_by_code": {}}
-
-        cache_key = (
-            history_compare_n,
-            tuple(sorted((r.code, getattr(r, 'query_id', '') or '') for r in results)),
-        )
-        if cache_key in self._history_compare_cache:
-            return {"history_by_code": self._history_compare_cache[cache_key]}
-
-        try:
-            from src.services.history_comparison_service import get_signal_changes_batch
-
-            exclude_ids = {
-                r.code: r.query_id
-                for r in results
-                if getattr(r, 'query_id', None)
-            }
-            codes = list(dict.fromkeys(r.code for r in results))
-            history_by_code = get_signal_changes_batch(
-                codes,
-                limit=history_compare_n,
-                exclude_query_ids=exclude_ids,
-            )
-        except Exception as e:
-            logger.debug("History comparison skipped: %s", e)
-            history_by_code = {}
-
-        self._history_compare_cache[cache_key] = history_by_code
-        return {"history_by_code": history_by_code}
 
     def generate_aggregate_report(
         self,
@@ -1051,7 +1015,6 @@ class NotificationService(
                 report_date=report_date,
                 summary_only=self._report_summary_only,
                 extra_context={
-                    **self._get_history_compare_context(results),
                     "report_language": report_language,
                 },
             )
