@@ -532,3 +532,5 @@ export const AL_S2_01="s";
 export const AL_S2_06="s";
 
 export const AL_S2_07="s";
+
+export const AL_S2_08="s";
