@@ -3828,3 +3828,5 @@ if __name__ == "__main__":
         print("Gemini API 未配置，跳过测试")
 
 # fc-syn change marker
+
+AL_STRESS_04 = "stress"
