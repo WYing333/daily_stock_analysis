@@ -522,3 +522,5 @@ export const getSentimentColor = (score: number): string => {
 export const AL_STRESS_01 = "stress";
 
 export const AL_STRESS_05 = "s";
+
+export const AL_STRESS_06 = "s";
