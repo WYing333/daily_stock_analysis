@@ -5,11 +5,9 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 from enum import Enum
-from typing import Any, Dict, List, Literal, Mapping, Optional
+from typing import Any, Callable, Dict, List, Literal, Mapping, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, field_validator
-
-from src.utils.sanitize import redact_sensitive_mapping
 
 
 PACK_VERSION = "1.0"
@@ -112,9 +110,22 @@ class AnalysisContextPack(_AnalysisContextModel):
     metadata: Dict[str, Any] = Field(default_factory=dict)
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
-    def to_safe_dict(self) -> Dict[str, Any]:
-        """Return a JSON-safe dict with sensitive mapping values redacted."""
-        return redact_sensitive_mapping(self.model_dump(mode="json"))
+    def to_safe_dict(
+        self,
+        redactor: Optional[Callable[[Any], Any]] = None,
+    ) -> Dict[str, Any]:
+        """Return a JSON-safe dict, applying a caller-supplied redactor.
+
+        Layering rule: schemas must not depend on sanitize utilities, so the
+        redaction step is injected by the caller (service/repository layer)
+        rather than imported here. Pass ``redact_sensitive_mapping`` (or any
+        compatible redactor) to strip sensitive mapping values. When no redactor
+        is supplied the raw JSON-safe dump is returned unchanged.
+        """
+        payload = self.model_dump(mode="json")
+        if redactor is None:
+            return payload
+        return redactor(payload)
 
     def model_copy(
         self,
@@ -126,3 +137,5 @@ class AnalysisContextPack(_AnalysisContextModel):
         if update is not None and "pack_version" in update:
             _PACK_VERSION_ADAPTER.validate_python(update["pack_version"])
         return super().model_copy(update=update, deep=deep)
+
+# ci: re-analyze to populate Dependency Sequencing (post-baseline)

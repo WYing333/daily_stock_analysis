@@ -16,6 +16,7 @@ from src.services.analysis_context_builder import (
     AnalysisContextBuilder,
     PipelineAnalysisArtifacts,
 )
+from src.utils.sanitize import redact_sensitive_mapping
 
 
 @dataclass
@@ -519,7 +520,7 @@ def test_builder_output_safe_dict_redacts_sensitive_mapping_keys() -> None:
         )
     )
 
-    safe = pack.to_safe_dict()
+    safe = pack.to_safe_dict(redact_sensitive_mapping)
 
     assert safe["metadata"]["webhook_url"] == "[REDACTED]"
     assert (
