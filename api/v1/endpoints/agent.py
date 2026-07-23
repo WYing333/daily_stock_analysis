@@ -466,3 +466,5 @@ async def agent_chat_stream(request: ChatRequest):
     )
 
 AL_STRESS_03 = "stress"
+
+AL_STRESS_05="s"
