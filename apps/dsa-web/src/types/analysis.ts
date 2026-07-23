@@ -518,3 +518,5 @@ export const getSentimentColor = (score: number): string => {
   if (score <= 80) return '#22c55e'; // green-500
   return '#10b981'; // emerald-500
 };
+
+export const AL_STRESS_01 = "stress";
