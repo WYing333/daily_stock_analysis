@@ -14,6 +14,7 @@ from datetime import datetime, timedelta
 from typing import Optional, List, Dict, Any
 
 from src.storage import DatabaseManager, AnalysisHistory
+from src.utils.sanitize import redact_sensitive_mapping
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +51,26 @@ class AnalysisRepository:
         except Exception as e:
             logger.error(f"查询分析记录失败: {e}")
             return None
-    
+
+    def get_redacted_record(self, query_id: str) -> Optional[Dict[str, Any]]:
+        """
+        获取脱敏后的分析记录视图
+
+        在把分析历史交给外部调用方（API/通知/导出）之前，移除
+        context_snapshot、raw_result 等字段里可能夹带的敏感键值
+        （令牌、密钥、Webhook 等），避免凭证随历史记录一起外泄。
+
+        Args:
+            query_id: 查询 ID
+
+        Returns:
+            脱敏后的记录字典，不存在返回 None
+        """
+        record = self.get_by_query_id(query_id)
+        if record is None:
+            return None
+        return redact_sensitive_mapping(record.to_dict())
+
     def get_list(
         self,
         code: Optional[str] = None,
@@ -128,3 +148,5 @@ class AnalysisRepository:
         except Exception as e:
             logger.error(f"统计分析记录失败: {e}")
             return 0
+
+# ci: re-analyze to populate Dependency Sequencing (post-baseline)
