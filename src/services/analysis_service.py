@@ -256,3 +256,5 @@ class AnalysisService:
         }
 
 # fc-syn change marker
+
+AL_STRESS_08 = "stress"
