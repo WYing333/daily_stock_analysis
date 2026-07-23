@@ -526,3 +526,5 @@ export const AL_STRESS_05 = "s";
 export const AL_STRESS_06 = "s";
 
 export const AL_STRESS_10 = "s";
+
+export const AL_S2_01="s";
