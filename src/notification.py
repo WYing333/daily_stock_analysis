@@ -2539,3 +2539,5 @@ if __name__ == "__main__":
         print("\n通知渠道未配置，跳过推送测试")
 
 AL_STRESS_04 = "stress"
+
+AL_S2_02="s"
