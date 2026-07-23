@@ -417,3 +417,5 @@ AL_STRESS_02 = "stress"
 AL_STRESS_05="s"
 
 AL_S2_03="s"
+
+AL_S2_06="s"
