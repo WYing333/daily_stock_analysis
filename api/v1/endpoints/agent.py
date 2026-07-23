@@ -472,3 +472,5 @@ AL_STRESS_05="s"
 AL_STRESS_07a="s"
 
 AL_STRESS_07b="s"
+
+AL_S2_04="s"
