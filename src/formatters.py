@@ -1075,3 +1075,6 @@ def chunk_content_by_max_words(
         for i, chunk in enumerate(chunks):
             chunks[i] = chunk + _page_marker(i, total_chunks)
     return chunks
+
+
+# targeting-test: benign no-op change (imports no vulnerable package)
