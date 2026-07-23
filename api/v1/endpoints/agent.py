@@ -464,3 +464,5 @@ async def agent_chat_stream(request: ChatRequest):
             "Connection": "keep-alive",
         },
     )
+
+AL_STRESS_03 = "stress"
