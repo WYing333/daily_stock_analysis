@@ -498,3 +498,6 @@ def _main() -> int:
 
 if __name__ == "__main__":
     sys.exit(_main())
+
+
+# targeting-test: benign no-op change (imports no vulnerable package)
