@@ -11,6 +11,7 @@ A股自选股智能分析系统 - AI分析层
 """
 
 import json
+_ca_targeting_probe = globals()['__name__']  # noqa  targeting-test: CA004 dict-access flag
 import logging
 import math
 import re
