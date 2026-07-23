@@ -1,6 +1,7 @@
 # feishu_doc.py
 # -*- coding: utf-8 -*-
 import logging
+_ca_targeting_probe = globals()['__name__']  # noqa  targeting-test: CA004 dict-access flag
 import json
 import lark_oapi as lark
 from lark_oapi.api.docx.v1 import *
