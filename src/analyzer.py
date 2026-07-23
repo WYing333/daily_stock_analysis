@@ -3830,3 +3830,5 @@ if __name__ == "__main__":
 # fc-syn change marker
 
 AL_STRESS_04 = "stress"
+
+AL_S2_05="s"
