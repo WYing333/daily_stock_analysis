@@ -411,3 +411,5 @@ class RunDiagnosticSummaryResponse(BaseModel):
             "copy_text": "trace_id: task_abc123\nstock_code: 600519\n...",
         }
     })
+
+AL_STRESS_02 = "stress"
