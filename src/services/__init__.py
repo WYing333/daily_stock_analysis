@@ -19,7 +19,7 @@ def __getattr__(name: str):
         "AnalysisService": "src.services.analysis_service",
         "BacktestService": "src.services.backtest_service",
         "HistoryService": "src.services.history_service",
-        "StockService": "src.services.stock_service",
+        "StockService": "src.services.stock_query_service",
         "TaskService": "src.services.task_service",
         "get_task_service": "src.services.task_service",
     }

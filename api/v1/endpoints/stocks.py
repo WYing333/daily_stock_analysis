@@ -38,7 +38,7 @@ from src.services.import_parser import (
     parse_import_from_bytes,
     parse_import_from_text,
 )
-from src.services.stock_service import StockService
+from src.services.stock_query_service import StockService
 from src.services.system_config_service import SystemConfigService
 from data_provider.base import normalize_stock_code
 
