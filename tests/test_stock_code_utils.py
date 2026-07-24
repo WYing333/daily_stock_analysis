@@ -182,3 +182,5 @@ class TestNormalizeCode:
     def test_partial_prefix_no_digits_returns_none(self):
         # SH followed by wrong digit count
         assert normalize_code("SH6005") is None
+
+# ds-demo: touch to surface this file in the DS before/after graph
