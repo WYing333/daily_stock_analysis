@@ -827,3 +827,5 @@ def register_fallback_model_pricing(models: Iterable[str]) -> None:
             logger.debug("Registered fallback pricing for %s", wire_model)
         except Exception as exc:
             logger.debug("Fallback pricing registration skipped for %s: %s", wire_model, exc)
+
+# ds-alert: dependency touched after analyzer.py -> inverts ordering

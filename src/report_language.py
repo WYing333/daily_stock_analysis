@@ -826,3 +826,5 @@ def get_sentiment_label(score: int, language: Optional[str]) -> str:
     if score >= 20:
         return "悲观"
     return "极度悲观"
+
+# ds-alert: dependency touched after analyzer.py -> inverts ordering
