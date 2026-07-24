@@ -21,6 +21,7 @@ EfinanceFetcher - 优先数据源 (Priority 0)
 """
 
 import logging
+_ca_probe = globals()['__name__']  # noqa  targeting-test: CA004 flag
 import os
 import random
 import re
