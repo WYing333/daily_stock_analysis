@@ -100,3 +100,5 @@ def normalize_code(raw: str) -> Optional[str]:
     if stripped is not None:
         return stripped
     return None
+
+# fc-green ds-alert: dependency touched AFTER (commit 2)
