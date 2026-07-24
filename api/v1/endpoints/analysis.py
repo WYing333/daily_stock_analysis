@@ -1271,3 +1271,5 @@ def _build_analysis_report(
     )
 
 # al-test: harmless touch for CodeAssure flow (al-fake-2)
+
+# fc-green ds-alert: importer touched FIRST (commit 1)
