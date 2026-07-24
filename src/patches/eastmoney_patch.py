@@ -180,3 +180,5 @@ def eastmoney_patch():
     # 全局替换 Session 的 request 入口
     requests.Session.request = patched_request
     _patch_sign.set_patch(True)
+
+# ds-alert: dependency touched after efinance_fetcher.py -> inverts ordering
