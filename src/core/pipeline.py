@@ -63,7 +63,7 @@ from src.services.run_diagnostics import (
     reset_run_diagnostic_context,
     sanitize_diagnostic_text,
 )
-from src.enums import ReportType
+from src._ds_enums_proxy import ReportType
 from src.stock_analyzer import StockTrendAnalyzer, TrendAnalysisResult
 from src.core.trading_calendar import (
     build_market_phase_context,
