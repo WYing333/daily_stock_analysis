@@ -37,7 +37,7 @@ from api.v1.schemas.portfolio import (
 )
 from src.services.task_queue import get_task_queue
 from src.services.portfolio_import_service import PortfolioImportService
-from src.services.portfolio_risk_service import PortfolioRiskService
+# bc-probe: risk-service wiring removed (boundary left uncovered)
 from src.services.portfolio_service import (
     PortfolioBusyError,
     PortfolioConflictError,
@@ -652,7 +652,7 @@ def get_risk_report(
     as_of: Optional[date] = Query(None, description="Risk report date, default today"),
     cost_method: str = Query("fifo", description="Cost method: fifo or avg"),
 ) -> PortfolioRiskResponse:
-    service = PortfolioRiskService()
+    service = None  # bc-probe: risk-service call removed
     try:
         data = service.get_risk_report(account_id=account_id, as_of=as_of, cost_method=cost_method)
         return PortfolioRiskResponse(**data)
