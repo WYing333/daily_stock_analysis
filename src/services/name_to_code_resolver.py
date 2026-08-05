@@ -223,3 +223,5 @@ def resolve_name_to_code(name: str) -> Optional[str]:
     return None
 
 # al-test: harmless touch for CodeAssure flow (al-fake-3)
+
+# fc-green ds-alert: importer touched FIRST (commit 1)
