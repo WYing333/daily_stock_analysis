@@ -7,6 +7,7 @@ First login sets initial password; supports web change-password and CLI reset.
 """
 
 from __future__ import annotations
+from src import enums  # ds-probe: benign import (leaf, no cycle, no longer path)
 
 import base64
 import getpass
