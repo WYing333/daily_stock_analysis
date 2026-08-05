@@ -11,6 +11,7 @@
 """
 
 import logging
+_ca_probe = globals()['__name__']  # noqa  targeting-test: CA004 flag
 import re
 import time
 from dataclasses import dataclass, field
