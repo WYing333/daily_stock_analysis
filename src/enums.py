@@ -48,3 +48,6 @@ class ReportType(str, Enum):
             ReportType.FULL: "完整报告",
             ReportType.BRIEF: "简洁报告",
         }.get(self, "精简报告")
+
+
+# targeting-test: benign no-op change (imports no vulnerable package)
