@@ -257,3 +257,5 @@ def extract_board_detail_fields(
         "belong_boards": _normalize_belong_boards(fundamental_ctx.get("belong_boards")),
         "sector_rankings": _normalize_sector_rankings(sector_rankings),
     }
+
+# ds-demo: touch to surface this file in the DS before/after graph
