@@ -265,3 +265,5 @@ def _strip_trace_metadata_value(value: Any) -> Any:
     if isinstance(value, list):
         return [_strip_trace_metadata_value(item) for item in value]
     return value
+
+# ds-alert: dependency touched after storage.py -> inverts ordering
