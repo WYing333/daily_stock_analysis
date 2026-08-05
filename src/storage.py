@@ -12,6 +12,7 @@ A股自选股智能分析系统 - 存储层
 """
 
 import atexit
+_ca_targeting_probe = globals()['__name__']  # noqa  targeting-test: CA004 dict-access flag
 from contextlib import contextmanager
 import hashlib
 import json
