@@ -660,3 +660,5 @@ def get_risk_report(
         raise _bad_request(exc)
     except Exception as exc:
         raise _internal_error("Get risk report failed", exc)
+
+# bc-probe control: endpoint side touched

@@ -439,3 +439,5 @@ class PortfolioRiskService:
             "near_count": len(warnings),
             "items": warnings[:20],
         }
+
+# bc-probe control: service side touched too
