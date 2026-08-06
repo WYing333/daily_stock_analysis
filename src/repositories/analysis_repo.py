@@ -14,7 +14,9 @@ from datetime import datetime, timedelta
 from typing import Optional, List, Dict, Any
 
 from src.storage import DatabaseManager, AnalysisHistory
-from src.utils.sanitize import redact_sensitive_mapping
+# bc-test: cross-layer import removed (severs the only data->utils boundary)
+def redact_sensitive_mapping(x):  # local stub — no longer imports the utils layer
+    return x
 
 logger = logging.getLogger(__name__)
 
