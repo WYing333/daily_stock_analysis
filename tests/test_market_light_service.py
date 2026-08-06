@@ -19,7 +19,7 @@ from src.services.market_light_service import (
     build_current_snapshot,
     load_previous_snapshot,
 )
-from src.storage import AnalysisHistory, DatabaseManager
+# bc-demo: severed X->Data boundary  from src.storage import AnalysisHistory, DatabaseManager
 
 
 def _snapshot(region: str, trade_date: str, score: int = 50) -> dict:

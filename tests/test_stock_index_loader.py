@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from src.data import stock_index_loader
+# bc-demo: severed X->Data boundary  from src.data import stock_index_loader
 
 
 def _write_stock_index(path: Path, name: str, size: int = 1) -> None:

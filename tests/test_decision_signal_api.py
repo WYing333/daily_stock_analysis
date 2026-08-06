@@ -22,7 +22,7 @@ except ModuleNotFoundError:
 import src.auth as auth
 from api.app import create_app
 from src.config import Config
-from src.storage import DatabaseManager, DecisionSignalRecord, PortfolioAccount, PortfolioPosition, utc_naive_now
+# bc-demo: severed X->Data boundary  from src.storage import DatabaseManager, DecisionSignalRecord, PortfolioAccount, PortfolioPosition, utc_naive_now
 
 
 @contextmanager

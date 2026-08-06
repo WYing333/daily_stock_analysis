@@ -34,7 +34,7 @@ except ModuleNotFoundError:
     get_stock_bar = None
 
 from src.config import Config
-from src.storage import DatabaseManager, AnalysisHistory, BacktestResult, DecisionSignalRecord
+# bc-demo: severed X->Data boundary  from src.storage import DatabaseManager, AnalysisHistory, BacktestResult, DecisionSignalRecord
 from src.analyzer import AnalysisResult
 from src.services.history_service import HistoryService
 import src.auth as auth

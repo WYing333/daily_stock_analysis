@@ -7,7 +7,7 @@ from datetime import date, timedelta
 from typing import Any, Dict, List, Optional, Tuple
 
 from src.config import Config, get_config
-from src.repositories.portfolio_repo import PortfolioRepository
+# bc-demo: severed X->Data boundary  from src.repositories.portfolio_repo import PortfolioRepository
 from src.services.portfolio_service import PortfolioService
 
 

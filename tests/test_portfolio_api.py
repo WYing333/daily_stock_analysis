@@ -25,7 +25,7 @@ import src.auth as auth
 from api.app import create_app
 from src.config import Config
 from src.services.portfolio_service import PortfolioBusyError
-from src.storage import DatabaseManager
+# bc-demo: severed X->Data boundary  from src.storage import DatabaseManager
 
 
 def _reset_auth_globals() -> None:

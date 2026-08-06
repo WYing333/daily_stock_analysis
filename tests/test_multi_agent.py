@@ -37,7 +37,7 @@ from src.agent.protocols import (
 )
 from src.agent.stock_scope import StockScope, resolve_stock_scope
 from src.config import AGENT_MAX_STEPS_DEFAULT, Config
-from src.storage import DatabaseManager
+# bc-demo: severed X->Data boundary  from src.storage import DatabaseManager
 
 
 # ============================================================

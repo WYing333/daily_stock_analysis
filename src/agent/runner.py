@@ -27,7 +27,7 @@ from typing import Any, Callable, Dict, List, Optional
 from src.agent.llm_adapter import LLMToolAdapter
 from src.agent.tools.registry import ToolRegistry
 from src.agent.stock_scope import StockScope
-from src.storage import persist_llm_usage as _persist_usage
+# bc-demo: severed X->Data boundary  from src.storage import persist_llm_usage as _persist_usage
 
 logger = logging.getLogger(__name__)
 

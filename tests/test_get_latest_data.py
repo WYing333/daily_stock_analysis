@@ -18,7 +18,7 @@ from datetime import date, timedelta
 import pandas as pd
 
 from src.config import Config
-from src.storage import DatabaseManager, StockDaily
+# bc-demo: severed X->Data boundary  from src.storage import DatabaseManager, StockDaily
 
 
 class GetLatestDataTestCase(unittest.TestCase):

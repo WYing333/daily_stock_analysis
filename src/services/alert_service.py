@@ -18,7 +18,7 @@ from src.agent.events import (
     _read_quote_float,
     validate_event_alert_rule,
 )
-from src.repositories.alert_repo import AlertRepository
+# bc-demo: severed X->Data boundary  from src.repositories.alert_repo import AlertRepository
 from src.services.alert_indicators import (
     TECHNICAL_ALERT_TYPES,
     TechnicalIndicatorAlert,
@@ -61,13 +61,13 @@ from src.analysis_context_pack_overview import (
     extract_analysis_context_pack_overview,
 )
 from src.market_phase_summary import MARKET_PHASE_SUMMARY_KEY, extract_market_phase_summary
-from src.storage import (
-    AlertCooldownRecord,
-    AlertNotificationRecord,
-    AlertRuleRecord,
-    AlertTriggerRecord,
-    DatabaseManager,
-)
+# bc-demo: severed X->Data boundary  from src.storage import (
+# bc-demo: severed X->Data boundary      AlertCooldownRecord,
+# bc-demo: severed X->Data boundary      AlertNotificationRecord,
+# bc-demo: severed X->Data boundary      AlertRuleRecord,
+# bc-demo: severed X->Data boundary      AlertTriggerRecord,
+# bc-demo: severed X->Data boundary      DatabaseManager,
+# bc-demo: severed X->Data boundary  )
 from src.utils.sanitize import sanitize_diagnostic_text
 
 

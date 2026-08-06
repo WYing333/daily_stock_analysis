@@ -104,7 +104,7 @@ class AgentMemory:
             return []
 
         try:
-            from src.storage import get_db
+# bc-demo: severed X->Data boundary              from src.storage import get_db
             db = get_db()
             records = db.get_analysis_history(code=stock_code, limit=limit)
             entries = []

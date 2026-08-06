@@ -21,7 +21,7 @@ from src.agent.provider_trace import (
     strip_trace_metadata,
     trace_model_matches,
 )
-from src.storage import get_db, persist_llm_usage
+# bc-demo: severed X->Data boundary  from src.storage import get_db, persist_llm_usage
 
 logger = logging.getLogger(__name__)
 

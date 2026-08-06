@@ -9,7 +9,7 @@ from fastapi.testclient import TestClient
 
 from api.app import create_app
 from src.config import Config
-from src.storage import DatabaseManager
+# bc-demo: severed X->Data boundary  from src.storage import DatabaseManager
 
 
 def teardown_function() -> None:

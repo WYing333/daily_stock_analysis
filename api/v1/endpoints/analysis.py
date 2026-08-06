@@ -701,7 +701,7 @@ def _load_history_run_flow_by_query_id(
     fail_open: bool = False,
 ) -> Optional[RunFlowSnapshot]:
     try:
-        from src.storage import DatabaseManager
+# bc-demo: severed X->Data boundary          from src.storage import DatabaseManager
         from src.services.history_service import HistoryService
 
         service = HistoryService(DatabaseManager.get_instance())
@@ -950,7 +950,7 @@ def get_analysis_status(task_id: str) -> TaskStatus:
     
     # 2. 从数据库查询已完成的记录
     try:
-        from src.storage import DatabaseManager
+# bc-demo: severed X->Data boundary          from src.storage import DatabaseManager
         db = DatabaseManager.get_instance()
         records = db.get_analysis_history(query_id=task_id, limit=1)
 
@@ -1114,7 +1114,7 @@ def _load_sync_fundamental_sources(
     Load context_snapshot and fallback fundamental snapshot for sync analyze response.
     """
     try:
-        from src.storage import DatabaseManager
+# bc-demo: severed X->Data boundary          from src.storage import DatabaseManager
 
         db = DatabaseManager.get_instance()
         records = db.get_analysis_history(query_id=query_id, code=stock_code, limit=1)

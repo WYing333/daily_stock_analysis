@@ -49,7 +49,7 @@ def reset_fetcher_manager() -> None:
 
 def _get_db():
     """Lazy import for DatabaseManager."""
-    from src.storage import get_db
+# bc-demo: severed X->Data boundary      from src.storage import get_db
     return get_db()
 
 

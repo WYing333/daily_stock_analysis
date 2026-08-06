@@ -420,7 +420,7 @@ def _persist_market_review_history(
 ) -> int:
     """Persist market review output into the existing analysis history table."""
     try:
-        from src.storage import DatabaseManager
+# bc-demo: severed X->Data boundary          from src.storage import DatabaseManager
 
         report_language = normalize_report_language(getattr(config, "report_language", "zh"))
         summary = _summarize_market_review(review_report, report_language)

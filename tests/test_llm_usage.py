@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from src.storage import DatabaseManager, LLMUsage, persist_llm_usage
+# bc-demo: severed X->Data boundary  from src.storage import DatabaseManager, LLMUsage, persist_llm_usage
 
 
 def _fresh_db() -> DatabaseManager:

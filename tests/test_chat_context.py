@@ -17,7 +17,7 @@ from src.agent.chat_context import (  # noqa: E402
 )
 from src.agent.llm_adapter import LLMToolAdapter  # noqa: E402
 from src.config import Config  # noqa: E402
-from src.storage import DatabaseManager  # noqa: E402
+# bc-demo: severed X->Data boundary  from src.storage import DatabaseManager  # noqa: E402
 
 
 def _reset_db() -> DatabaseManager:

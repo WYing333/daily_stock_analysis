@@ -369,7 +369,7 @@ def test_stock_index_route_falls_back_to_static_index(tmp_path: Path) -> None:
 def test_stock_index_route_does_not_parse_bundled_candidates_on_hot_path(tmp_path: Path) -> None:
     from api import app as app_module
     from api.app import create_app
-    from src.data import stock_index_loader
+# bc-demo: severed X->Data boundary      from src.data import stock_index_loader
 
     static_dir = tmp_path / "static"
     cache_path = tmp_path / "cache" / "missing.json"

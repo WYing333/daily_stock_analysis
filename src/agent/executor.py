@@ -26,7 +26,7 @@ from src.agent.llm_adapter import LLMToolAdapter
 from src.agent.provider_trace import extract_provider_trace_turns
 from src.agent.runner import run_agent_loop, parse_dashboard_json
 from src.agent.stock_scope import StockScope, resolve_stock_scope
-from src.storage import get_db
+# bc-demo: severed X->Data boundary  from src.storage import get_db
 from src.agent.tools.registry import ToolRegistry
 from src.report_language import normalize_report_language
 from src.market_context import get_market_role, get_market_guidelines

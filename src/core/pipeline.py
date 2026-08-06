@@ -23,7 +23,7 @@ from typing import List, Dict, Any, Optional, Tuple, Callable
 import pandas as pd
 
 from src.config import FUNDAMENTAL_STAGE_TIMEOUT_SECONDS_DEFAULT, get_config, Config
-from src.storage import get_db
+# bc-demo: severed X->Data boundary  from src.storage import get_db
 from data_provider import DataFetcherManager
 from data_provider.base import normalize_stock_code
 from data_provider.realtime_types import ChipDistribution

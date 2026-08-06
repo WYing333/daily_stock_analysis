@@ -21,7 +21,7 @@ from datetime import datetime
 from typing import Optional, Dict, Any, List, Union
 
 from src.enums import ReportType
-from src.storage import get_db
+# bc-demo: severed X->Data boundary  from src.storage import get_db
 from bot.models import BotMessage
 
 logger = logging.getLogger(__name__)

@@ -11,17 +11,17 @@ from typing import Any, Dict, List, Optional, Tuple, get_args
 
 from data_provider.base import canonical_stock_code, normalize_stock_code
 from src.core.trading_calendar import MarketPhase
-from src.repositories.decision_signal_repo import DecisionSignalRepository
-from src.repositories.portfolio_repo import PortfolioRepository
+# bc-demo: severed X->Data boundary  from src.repositories.decision_signal_repo import DecisionSignalRepository
+# bc-demo: severed X->Data boundary  from src.repositories.portfolio_repo import PortfolioRepository
 from src.report_language import normalize_report_language
 from src.schemas.decision_action import DecisionAction, localize_action_label
 from src.services.portfolio_service import VALID_MARKETS
-from src.storage import (
-    DatabaseManager,
-    DecisionSignalRecord,
-    to_utc_naive_datetime,
-    utc_naive_now,
-)
+# bc-demo: severed X->Data boundary  from src.storage import (
+# bc-demo: severed X->Data boundary      DatabaseManager,
+# bc-demo: severed X->Data boundary      DecisionSignalRecord,
+# bc-demo: severed X->Data boundary      to_utc_naive_datetime,
+# bc-demo: severed X->Data boundary      utc_naive_now,
+# bc-demo: severed X->Data boundary  )
 from src.utils.sanitize import sanitize_decision_signal_payload, sanitize_decision_signal_text
 
 
