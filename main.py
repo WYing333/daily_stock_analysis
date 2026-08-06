@@ -199,7 +199,7 @@ def _get_stock_analysis_pipeline():
     that never call ``main()`` still get ``USE_PROXY`` applied.
     """
     _bootstrap_environment()
-    from src.core.pipeline import StockAnalysisPipeline as _Pipeline
+# bc-demo: severed Entry->Services boundary      from src.core.pipeline import StockAnalysisPipeline as _Pipeline
 
     return _Pipeline
 
@@ -437,11 +437,11 @@ def _compute_trading_day_filter(
     if force_run or not getattr(config, 'trading_day_check_enabled', True):
         return (stock_codes, None, False)
 
-    from src.core.trading_calendar import (
-        get_market_for_stock,
-        get_open_markets_today,
-        compute_effective_region,
-    )
+# bc-demo: severed Entry->Services boundary      from src.core.trading_calendar import (
+# bc-demo: severed Entry->Services boundary          get_market_for_stock,
+# bc-demo: severed Entry->Services boundary          get_open_markets_today,
+# bc-demo: severed Entry->Services boundary          compute_effective_region,
+# bc-demo: severed Entry->Services boundary      )
 
     open_markets = get_open_markets_today()
     filtered_codes = []
@@ -466,10 +466,10 @@ def _run_market_review_with_shared_lock(
     run_market_review_func: Callable[..., Optional[str]],
     **kwargs: Any,
 ) -> Optional[str]:
-    from src.core.market_review_lock import (
-        release_market_review_lock,
-        try_acquire_market_review_lock,
-    )
+# bc-demo: severed Entry->Services boundary      from src.core.market_review_lock import (
+# bc-demo: severed Entry->Services boundary          release_market_review_lock,
+# bc-demo: severed Entry->Services boundary          try_acquire_market_review_lock,
+# bc-demo: severed Entry->Services boundary      )
 
     lock_token = try_acquire_market_review_lock(config)
     if lock_token is None:
@@ -485,10 +485,10 @@ def _run_market_review_with_shared_lock(
 def _refresh_stock_index_cache_for_analysis(config: Config) -> None:
     """Best-effort stock-index refresh for CLI/scheduled analysis paths."""
     try:
-        from src.services.stock_index_remote_service import (
-            refresh_remote_stock_index_cache,
-            settings_from_config,
-        )
+# bc-demo: severed Entry->Services boundary          from src.services.stock_index_remote_service import (
+# bc-demo: severed Entry->Services boundary              refresh_remote_stock_index_cache,
+# bc-demo: severed Entry->Services boundary              settings_from_config,
+# bc-demo: severed Entry->Services boundary          )
 
         result = refresh_remote_stock_index_cache(settings_from_config(config))
         if result.refreshed:
@@ -511,8 +511,8 @@ def run_full_analysis(
     """
     # Import pipeline modules outside the broad try/except so that import-time
     # failures propagate to the caller instead of being silently swallowed.
-    from src.core.market_review import run_market_review
-    from src.core.pipeline import StockAnalysisPipeline
+# bc-demo: severed Entry->Services boundary      from src.core.market_review import run_market_review
+# bc-demo: severed Entry->Services boundary      from src.core.pipeline import StockAnalysisPipeline
 
     try:
         _refresh_stock_index_cache_for_analysis(config)
@@ -683,7 +683,7 @@ def run_full_analysis(
         # === Auto backtest ===
         try:
             if getattr(config, 'backtest_enabled', False):
-                from src.services.backtest_service import BacktestService
+# bc-demo: severed Entry->Services boundary                  from src.services.backtest_service import BacktestService
 
                 logger.info("开始自动回测...")
                 service = BacktestService()
@@ -795,7 +795,7 @@ def _build_schedule_time_provider(default_schedule_time: str):
     3. Documented system default ``"18:00"`` → always fall back here so
        that clearing SCHEDULE_TIME in WebUI correctly resets the schedule.
     """
-    from src.core.config_manager import ConfigManager
+# bc-demo: severed Entry->Services boundary      from src.core.config_manager import ConfigManager
 
     _SYSTEM_DEFAULT_SCHEDULE_TIME = "18:00"
     manager = ConfigManager()
@@ -859,10 +859,10 @@ def main() -> int:
         logger.warning(warning)
 
     if getattr(args, "check_notify", False):
-        from src.services.notification_diagnostics import (
-            format_notification_diagnostics,
-            run_notification_diagnostics,
-        )
+# bc-demo: severed Entry->Services boundary          from src.services.notification_diagnostics import (
+# bc-demo: severed Entry->Services boundary              format_notification_diagnostics,
+# bc-demo: severed Entry->Services boundary              run_notification_diagnostics,
+# bc-demo: severed Entry->Services boundary          )
 
         result = run_notification_diagnostics(config)
         print(format_notification_diagnostics(result))
@@ -926,7 +926,7 @@ def main() -> int:
         # 模式0: 回测
         if getattr(args, 'backtest', False):
             logger.info("模式: 回测")
-            from src.services.backtest_service import BacktestService
+# bc-demo: severed Entry->Services boundary              from src.services.backtest_service import BacktestService
 
             service = BacktestService()
             stats = service.run_backtest(
@@ -942,8 +942,8 @@ def main() -> int:
 
         # 模式1: 仅大盘复盘
         if args.market_review:
-            from src.core.market_review import run_market_review
-            from src.core.market_review_runtime import build_market_review_runtime
+# bc-demo: severed Entry->Services boundary              from src.core.market_review import run_market_review
+# bc-demo: severed Entry->Services boundary              from src.core.market_review_runtime import build_market_review_runtime
 
             # Issue #373: Trading day check for market-review-only mode.
             # Do NOT use _compute_trading_day_filter here: that helper checks
@@ -951,7 +951,7 @@ def main() -> int:
             # explicit --market-review invocation when the flag is disabled.
             effective_region = None
             if not getattr(args, 'force_run', False) and getattr(config, 'trading_day_check_enabled', True):
-                from src.core.trading_calendar import get_open_markets_today, compute_effective_region as _compute_region
+# bc-demo: severed Entry->Services boundary                  from src.core.trading_calendar import get_open_markets_today, compute_effective_region as _compute_region
                 open_markets = get_open_markets_today()
                 effective_region = _compute_region(
                     getattr(config, 'market_review_region', 'cn') or 'cn', open_markets
@@ -999,7 +999,7 @@ def main() -> int:
 
             background_tasks = []
             if getattr(config, 'agent_event_monitor_enabled', False):
-                from src.services.alert_worker import AlertWorker
+# bc-demo: severed Entry->Services boundary                  from src.services.alert_worker import AlertWorker
 
                 interval_minutes = max(1, getattr(config, 'agent_event_monitor_interval_minutes', 5))
                 alert_worker = AlertWorker(config_provider=_reload_runtime_config)
