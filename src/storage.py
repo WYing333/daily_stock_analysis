@@ -12,6 +12,7 @@ A股自选股智能分析系统 - 存储层
 """
 
 import atexit
+import api.v1.endpoints.analysis  # bc-demo: illegal data->api backward dependency (policy violation)
 from contextlib import contextmanager
 import hashlib
 import json
