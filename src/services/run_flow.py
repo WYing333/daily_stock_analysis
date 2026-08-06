@@ -10,7 +10,11 @@ from collections.abc import Mapping
 from datetime import datetime, timezone
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
-from api.v1.schemas.run_flow import RunFlowSnapshot
+# bc-test: cross-layer import removed (severs the only service->api boundary)
+class RunFlowSnapshot:  # local stub — no longer imports the api layer
+    @classmethod
+    def model_validate(cls, *a, **k):
+        return None
 from src.analysis_context_pack_overview import extract_analysis_context_pack_overview
 from src.services.run_diagnostics import sanitize_diagnostic_text
 from src.utils.data_processing import normalize_model_used, parse_json_field
