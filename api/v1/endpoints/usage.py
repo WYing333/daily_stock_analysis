@@ -10,7 +10,7 @@ from fastapi import APIRouter, Depends, Query
 
 from api.deps import get_database_manager
 from api.v1.schemas.usage import UsageSummaryResponse
-from src.storage import DatabaseManager
+# bc-demo: severed X->Data boundary  from src.storage import DatabaseManager
 
 logger = logging.getLogger(__name__)
 

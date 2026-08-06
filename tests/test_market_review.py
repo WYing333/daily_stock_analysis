@@ -40,7 +40,7 @@ def _build_optional_module_stubs() -> dict[str, ModuleType]:
 sys.modules.update(_build_optional_module_stubs())
 import src.core.market_review as market_review_module
 from src.config import Config
-from src.storage import AnalysisHistory, DatabaseManager
+# bc-demo: severed X->Data boundary  from src.storage import AnalysisHistory, DatabaseManager
 
 run_market_review = market_review_module.run_market_review
 

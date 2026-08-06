@@ -32,7 +32,7 @@ def _resolve_chat_session_id(message: BotMessage) -> str:
         return session_id
 
     try:
-        from src.storage import get_db
+# bc-demo: severed X->Data boundary          from src.storage import get_db
 
         db = get_db()
         legacy_exists = db.conversation_session_exists(legacy_session_id)

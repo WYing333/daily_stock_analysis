@@ -29,7 +29,7 @@ from src.report_language import (
     localize_trend_prediction,
     normalize_report_language,
 )
-from src.storage import DatabaseManager
+# bc-demo: severed X->Data boundary  from src.storage import DatabaseManager
 from src.services.run_diagnostics import build_run_diagnostic_summary
 from src.market_phase_summary import extract_market_phase_summary
 from src.schemas.decision_action import build_action_fields

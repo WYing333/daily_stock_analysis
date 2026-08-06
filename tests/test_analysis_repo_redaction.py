@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from typing import Any, Dict, List
 
-from src.repositories.analysis_repo import AnalysisRepository
+# bc-demo: severed X->Data boundary  from src.repositories.analysis_repo import AnalysisRepository
 
 
 class _FakeRecord:

@@ -19,7 +19,7 @@ from bot.commands.base import BotCommand
 from bot.models import BotMessage, BotResponse
 from data_provider.base import canonical_stock_code
 from src.config import get_config
-from src.storage import get_db
+# bc-demo: severed X->Data boundary  from src.storage import get_db
 
 logger = logging.getLogger(__name__)
 

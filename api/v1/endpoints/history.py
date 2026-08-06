@@ -34,7 +34,7 @@ from api.v1.schemas.history import (
 )
 from api.v1.schemas.common import ErrorResponse
 from api.v1.schemas.run_flow import RunFlowSnapshot
-from src.storage import DatabaseManager
+# bc-demo: severed X->Data boundary  from src.storage import DatabaseManager
 from src.report_language import (
     get_sentiment_label,
     get_localized_stock_name,

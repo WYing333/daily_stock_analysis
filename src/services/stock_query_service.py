@@ -13,7 +13,7 @@ import logging
 from datetime import datetime, timedelta
 from typing import Optional, Dict, Any, List
 
-from src.repositories.stock_repo import StockRepository
+# bc-demo: severed X->Data boundary  from src.repositories.stock_repo import StockRepository
 
 logger = logging.getLogger(__name__)
 

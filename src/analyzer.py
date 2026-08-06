@@ -40,8 +40,8 @@ from src.config import (
 )
 from src.llm.generation_params import apply_litellm_generation_params
 from src.llm.errors import call_litellm_with_param_recovery
-from src.storage import persist_llm_usage
-from src.data.stock_mapping import STOCK_NAME_MAP
+# bc-demo: severed X->Data boundary  from src.storage import persist_llm_usage
+# bc-demo: severed X->Data boundary  from src.data.stock_mapping import STOCK_NAME_MAP
 from src.report_language import (
     get_signal_level,
     get_no_data_text,

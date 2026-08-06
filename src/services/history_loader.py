@@ -134,7 +134,7 @@ def load_history_df(
     actual provider name on network fallback.  Returns ``(None, "none")`` when
     both paths fail.
     """
-    from src.storage import get_db
+# bc-demo: severed X->Data boundary      from src.storage import get_db
 
     # Resolve effective end date
     if target_date is not None:

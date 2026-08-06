@@ -20,7 +20,7 @@ from unittest.mock import patch
 from sqlalchemy.exc import OperationalError
 
 from src.config import Config
-from src.storage import DatabaseManager, NewsIntel
+# bc-demo: severed X->Data boundary  from src.storage import DatabaseManager, NewsIntel
 from src.search_service import SearchResponse, SearchResult
 
 

@@ -10,8 +10,8 @@ import pytest
 from sqlalchemy import inspect
 
 from src.config import Config
-from src.repositories.decision_signal_repo import DecisionSignalRepository
-from src.storage import Base, DatabaseManager, DecisionSignalRecord, utc_naive_now
+# bc-demo: severed X->Data boundary  from src.repositories.decision_signal_repo import DecisionSignalRepository
+# bc-demo: severed X->Data boundary  from src.storage import Base, DatabaseManager, DecisionSignalRecord, utc_naive_now
 
 
 @pytest.fixture()

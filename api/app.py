@@ -137,7 +137,7 @@ from api.middlewares.auth import add_auth_middleware
 from api.middlewares.error_handler import add_error_handlers
 from api.v1.schemas.common import HealthResponse
 from src.auth import is_auth_enabled
-from src.data.stock_index_loader import find_existing_stock_index_path
+# bc-demo: severed X->Data boundary  from src.data.stock_index_loader import find_existing_stock_index_path
 from src.services.system_config_service import SystemConfigService
 from src.services.stock_index_remote_service import (
     get_remote_stock_index_cache_path,

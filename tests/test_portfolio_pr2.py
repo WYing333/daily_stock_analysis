@@ -26,7 +26,7 @@ from src.config import Config
 from src.services.portfolio_import_service import PortfolioImportService
 from src.services.portfolio_risk_service import PortfolioRiskService
 from src.services.portfolio_service import PortfolioBusyError, PortfolioService
-from src.storage import DatabaseManager
+# bc-demo: severed X->Data boundary  from src.storage import DatabaseManager
 
 
 def _reset_auth_globals() -> None:

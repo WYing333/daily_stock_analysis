@@ -675,7 +675,7 @@ User: "analyze TSLA and NVDA using trend strategy"
     def _resolve_stock_code_from_text(cls, text: str) -> Optional[str]:
         """Best-effort stock name/code resolution for NL-routed analysis requests."""
         from data_provider.base import canonical_stock_code
-        from src.data.stock_mapping import STOCK_NAME_MAP
+# bc-demo: severed X->Data boundary          from src.data.stock_mapping import STOCK_NAME_MAP
         from src.services.name_to_code_resolver import resolve_name_to_code
 
         def _iter_candidates(raw_text: str) -> List[str]:

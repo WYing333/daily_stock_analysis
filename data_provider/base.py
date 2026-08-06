@@ -24,8 +24,8 @@ from typing import Callable, Optional, List, Tuple, Dict, Any
 
 import pandas as pd
 import numpy as np
-from src.data.stock_index_loader import get_index_stock_name
-from src.data.stock_mapping import STOCK_NAME_MAP, is_meaningful_stock_name
+# bc-demo: severed X->Data boundary  from src.data.stock_index_loader import get_index_stock_name
+# bc-demo: severed X->Data boundary  from src.data.stock_mapping import STOCK_NAME_MAP, is_meaningful_stock_name
 from src.services.run_diagnostics import record_provider_run
 from .fundamental_adapter import AkshareFundamentalAdapter
 from .yfinance_fundamental_adapter import YfinanceFundamentalAdapter

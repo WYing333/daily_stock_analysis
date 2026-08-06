@@ -25,7 +25,7 @@ from src.services.alert_indicators import (
 )
 from src.services.alert_service import AlertService
 from src.services.alert_worker import AlertWorker
-from src.storage import DatabaseManager
+# bc-demo: severed X->Data boundary  from src.storage import DatabaseManager
 
 
 class AlertIndicatorHelperTestCase(unittest.TestCase):

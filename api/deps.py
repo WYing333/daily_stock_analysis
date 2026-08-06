@@ -15,7 +15,7 @@ from typing import Generator
 from fastapi import Request
 from sqlalchemy.orm import Session
 
-from src.storage import DatabaseManager
+# bc-demo: severed X->Data boundary  from src.storage import DatabaseManager
 from src.config import get_config, Config
 from src.services.system_config_service import SystemConfigService
 

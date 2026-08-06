@@ -13,7 +13,7 @@ import pytest
 
 from src.config import Config
 from src.services.decision_signal_service import DecisionSignalService, DecisionSignalStorageError
-from src.storage import DatabaseManager, DecisionSignalRecord
+# bc-demo: severed X->Data boundary  from src.storage import DatabaseManager, DecisionSignalRecord
 from src.utils.sanitize import sanitize_decision_signal_text, sanitize_diagnostic_text
 
 

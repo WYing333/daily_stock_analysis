@@ -19,9 +19,9 @@ from sqlalchemy.exc import OperationalError
 from sqlalchemy import select
 
 from src.config import Config
-from src.repositories.portfolio_repo import PortfolioBusyError, PortfolioRepository
+# bc-demo: severed X->Data boundary  from src.repositories.portfolio_repo import PortfolioBusyError, PortfolioRepository
 from src.services.portfolio_service import _AvgState, PortfolioConflictError, PortfolioOversellError, PortfolioService
-from src.storage import DatabaseManager, PortfolioDailySnapshot, PortfolioPosition, PortfolioPositionLot, PortfolioTrade
+# bc-demo: severed X->Data boundary  from src.storage import DatabaseManager, PortfolioDailySnapshot, PortfolioPosition, PortfolioPositionLot, PortfolioTrade
 
 
 class PortfolioServiceTestCase(unittest.TestCase):

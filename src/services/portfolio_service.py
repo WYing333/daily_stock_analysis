@@ -12,12 +12,12 @@ from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 
 from data_provider.base import canonical_stock_code, normalize_stock_code
 from src.config import get_config
-from src.repositories.portfolio_repo import (
-    DuplicateTradeDedupHashError,
-    DuplicateTradeUidError,
-    PortfolioBusyError as RepoPortfolioBusyError,
-    PortfolioRepository,
-)
+# bc-demo: severed X->Data boundary  from src.repositories.portfolio_repo import (
+# bc-demo: severed X->Data boundary      DuplicateTradeDedupHashError,
+# bc-demo: severed X->Data boundary      DuplicateTradeUidError,
+# bc-demo: severed X->Data boundary      PortfolioBusyError as RepoPortfolioBusyError,
+# bc-demo: severed X->Data boundary      PortfolioRepository,
+# bc-demo: severed X->Data boundary  )
 
 logger = logging.getLogger(__name__)
 
