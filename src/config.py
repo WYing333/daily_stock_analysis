@@ -64,7 +64,7 @@ class ConfigIssue:
 
 
 _MANAGED_LITELLM_KEY_PROVIDERS = {"gemini", "vertex_ai", "anthropic", "openai", "deepseek"}
-SUPPORTED_LLM_CHANNEL_PROTOCOLS = ("openai", "anthropic", "gemini", "vertex_ai", "deepseek", "ollama")
+SUPPORTED_LLM_PROTOCOLS = ("openai", "anthropic", "gemini", "vertex_ai", "deepseek", "ollama")
 _FALSEY_ENV_VALUES = {"0", "false", "no", "off"}
 # Fallback defaults used when ANSPIRE_API_KEYS is reused as legacy OpenAI-compatible source.
 # These are compatibility examples; actual availability should be validated by Anspire console/model entitlement.
@@ -332,20 +332,20 @@ def resolve_llm_channel_protocol(
 ) -> str:
     """Resolve the effective protocol for a channel."""
     explicit = canonicalize_llm_channel_protocol(protocol)
-    if explicit in SUPPORTED_LLM_CHANNEL_PROTOCOLS:
+    if explicit in SUPPORTED_LLM_PROTOCOLS:
         return explicit
 
     for model in models or []:
         if "/" not in model:
             continue
         prefix = canonicalize_llm_channel_protocol(model.split("/", 1)[0])
-        if prefix in SUPPORTED_LLM_CHANNEL_PROTOCOLS:
+        if prefix in SUPPORTED_LLM_PROTOCOLS:
             return prefix
 
     # Infer from channel name (e.g. "deepseek" -> deepseek, "gemini" -> gemini)
     if channel_name:
         name_protocol = canonicalize_llm_channel_protocol(channel_name)
-        if name_protocol in SUPPORTED_LLM_CHANNEL_PROTOCOLS:
+        if name_protocol in SUPPORTED_LLM_PROTOCOLS:
             return name_protocol
 
     if base_url:
@@ -384,7 +384,7 @@ def normalize_llm_channel_model(model: str, protocol: Optional[str], base_url: O
         raw_prefix, remainder = normalized_model.split("/", 1)
         prefix = raw_prefix.lower()
         canonical_prefix = canonicalize_llm_channel_protocol(prefix)
-        known_providers = _MANAGED_LITELLM_KEY_PROVIDERS | set(SUPPORTED_LLM_CHANNEL_PROTOCOLS) | {
+        known_providers = _MANAGED_LITELLM_KEY_PROVIDERS | set(SUPPORTED_LLM_PROTOCOLS) | {
             "minimax",
             "cohere", "huggingface", "bedrock", "sagemaker", "azure",
             "replicate", "together_ai", "palm", "text-completion-openai",
@@ -1933,7 +1933,7 @@ class Config:
                 _logger.info(f"LLM channel '{ch_name}': disabled, skipped")
                 continue
 
-            if protocol_raw and canonicalize_llm_channel_protocol(protocol_raw) not in SUPPORTED_LLM_CHANNEL_PROTOCOLS:
+            if protocol_raw and canonicalize_llm_channel_protocol(protocol_raw) not in SUPPORTED_LLM_PROTOCOLS:
                 _logger.warning(
                     "LLM_%s_PROTOCOL=%s is unsupported; auto-detected protocol=%s",
                     ch_upper,
