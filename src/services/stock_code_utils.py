@@ -100,3 +100,5 @@ def normalize_code(raw: str) -> Optional[str]:
     if stripped is not None:
         return stripped
     return None
+
+# cm: behavior note
