@@ -6,6 +6,7 @@ from __future__ import annotations
 from typing import Any, Dict, List
 
 from src.config import get_effective_agent_models_to_try, get_effective_agent_primary_model
+import data_provider.base  # cm service->data (allowed)
 
 
 _PLACEHOLDER_TO_PROVIDER = {
