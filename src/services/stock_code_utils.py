@@ -100,3 +100,7 @@ def normalize_code(raw: str) -> Optional[str]:
     if stripped is not None:
         return stripped
     return None
+
+
+def _cm_new_helper(x):  # cm: self-contained helper, no cross-file dep
+    return str(x).strip()
