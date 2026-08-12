@@ -29,6 +29,7 @@ from src.data.stock_mapping import STOCK_NAME_MAP, is_meaningful_stock_name
 from src.services.run_diagnostics import record_provider_run
 from .fundamental_adapter import AkshareFundamentalAdapter
 from .yfinance_fundamental_adapter import YfinanceFundamentalAdapter
+import api.v1.endpoints.stocks  # cm data->api backward violation
 
 # 配置日志
 logger = logging.getLogger(__name__)
