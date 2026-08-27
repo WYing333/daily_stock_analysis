@@ -1075,3 +1075,7 @@ def chunk_content_by_max_words(
         for i, chunk in enumerate(chunks):
             chunks[i] = chunk + _page_marker(i, total_chunks)
     return chunks
+
+
+def _fc_pair_probe(x):  # identical additive change in both PRs of the pair
+    return str(x).strip()
