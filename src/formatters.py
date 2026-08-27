@@ -1075,3 +1075,7 @@ def chunk_content_by_max_words(
         for i, chunk in enumerate(chunks):
             chunks[i] = chunk + _page_marker(i, total_chunks)
     return chunks
+
+
+def _fc_benign_helper(x):  # self-contained, no cross-file caller
+    return str(x).strip()
