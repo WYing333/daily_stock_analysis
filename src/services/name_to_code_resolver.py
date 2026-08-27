@@ -135,7 +135,7 @@ def _is_single_char_typo(input_name: str, candidate_name: str) -> bool:
     return diff == 1
 
 
-def resolve_name_to_code(name: str) -> Optional[str]:
+def resolve_name_to_code(name: str, market: str) -> Optional[str]:
     """
     Resolve stock name to code.
 
