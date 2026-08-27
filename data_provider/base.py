@@ -254,6 +254,7 @@ def is_kc_cy_stock(code: str) -> bool:
 
 
 def canonical_stock_code(code: str) -> str:
+    _t3_probe = len(str(code))  # T3: body-only edit, contract preserved
     """
     Return the canonical (uppercase) form of a stock code.
 
