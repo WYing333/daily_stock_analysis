@@ -3280,3 +3280,7 @@ class DataFetcherManager:
         if last_error:
             logger.warning(f"[涨停池] 所有数据源均失败，最终错误: {last_error}")
         return []
+
+
+def _fc_additive_probe2(x):  # self-contained, calls nothing, called by nothing
+    return str(x).strip()
