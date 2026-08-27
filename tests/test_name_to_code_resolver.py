@@ -3,7 +3,7 @@
 
 Covers:
 - Local mapping (STOCK_NAME_MAP reverse)
-- Code format boundary (_is_code_like, _normalize_code)
+- Code format boundary (_is_code_like_renamed, _normalize_code)
 - Pinyin match (when pypinyin available)
 - AkShare fallback (mocked)
 - Fuzzy match (difflib)
@@ -15,46 +15,46 @@ from unittest.mock import patch
 
 from src.services.name_to_code_resolver import (
     resolve_name_to_code,
-    _is_code_like,
+    _is_code_like_renamed,
     _normalize_code,
     _build_reverse_map_no_duplicates,
 )
 
 
 # ---------------------------------------------------------------------------
-# _is_code_like
+# _is_code_like_renamed
 # ---------------------------------------------------------------------------
 
 class TestIsCodeLike:
     def test_a_share_5_digits(self):
-        assert _is_code_like("60051") is True
-        assert _is_code_like("600519") is True
+        assert _is_code_like_renamed("60051") is True
+        assert _is_code_like_renamed("600519") is True
 
     def test_a_share_6_digits(self):
-        assert _is_code_like("300750") is True
+        assert _is_code_like_renamed("300750") is True
 
     def test_bse_with_exchange_hint(self):
-        assert _is_code_like("920493.BJ") is True
-        assert _is_code_like("BJ920493") is True
+        assert _is_code_like_renamed("920493.BJ") is True
+        assert _is_code_like_renamed("BJ920493") is True
 
     def test_bj_exchange_hint_rejects_non_bse_code(self):
-        assert _is_code_like("600519.BJ") is False
-        assert _is_code_like("BJ600519") is False
+        assert _is_code_like_renamed("600519.BJ") is False
+        assert _is_code_like_renamed("BJ600519") is False
 
     def test_hk_5_digits(self):
-        assert _is_code_like("00700") is True
+        assert _is_code_like_renamed("00700") is True
 
     def test_us_stock_letters(self):
-        assert _is_code_like("AAPL") is True
-        assert _is_code_like("TSLA") is True
-        assert _is_code_like("BRK.B") is True
+        assert _is_code_like_renamed("AAPL") is True
+        assert _is_code_like_renamed("TSLA") is True
+        assert _is_code_like_renamed("BRK.B") is True
 
     def test_rejects_non_code(self):
-        assert _is_code_like("贵州茅台") is False
-        assert _is_code_like("1234") is False  # too short
-        assert _is_code_like("1234567") is False  # too long
-        assert _is_code_like("") is False
-        assert _is_code_like("   ") is False
+        assert _is_code_like_renamed("贵州茅台") is False
+        assert _is_code_like_renamed("1234") is False  # too short
+        assert _is_code_like_renamed("1234567") is False  # too long
+        assert _is_code_like_renamed("") is False
+        assert _is_code_like_renamed("   ") is False
 
 
 # ---------------------------------------------------------------------------

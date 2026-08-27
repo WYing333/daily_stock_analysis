@@ -59,7 +59,7 @@ def _strip_exchange_suffix(text: str) -> Optional[str]:
     return None
 
 
-def is_code_like(value: str) -> bool:
+def is_code_like_renamed(value: str) -> bool:
     """Check if string looks like a stock code (5-6 digits, 1-5 letters, or prefixed code)."""
     text = value.strip().upper()
     if not text:

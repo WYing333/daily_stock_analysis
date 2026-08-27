@@ -1,101 +1,101 @@
 # -*- coding: utf-8 -*-
 """
 Tests for src/services/stock_code_utils.py
-Covers: is_code_like, normalize_code - including exchange prefix handling.
+Covers: is_code_like_renamed, normalize_code - including exchange prefix handling.
 """
 
 import pytest
 
-from src.services.stock_code_utils import is_code_like, normalize_code
+from src.services.stock_code_utils import is_code_like_renamed, normalize_code
 
 
 class TestIsCodeLike:
     # --- Plain digit codes ---
     def test_plain_6_digit(self):
-        assert is_code_like("600519") is True
+        assert is_code_like_renamed("600519") is True
 
     def test_plain_5_digit(self):
-        assert is_code_like("00700") is True
+        assert is_code_like_renamed("00700") is True
 
     def test_4_digit_rejected(self):
-        assert is_code_like("6001") is False
+        assert is_code_like_renamed("6001") is False
 
     # --- Suffix format ---
     def test_suffix_sh(self):
-        assert is_code_like("600519.SH") is True
+        assert is_code_like_renamed("600519.SH") is True
 
     def test_suffix_sz(self):
-        assert is_code_like("000001.SZ") is True
+        assert is_code_like_renamed("000001.SZ") is True
 
     def test_suffix_bj(self):
-        assert is_code_like("920493.BJ") is True
+        assert is_code_like_renamed("920493.BJ") is True
 
     def test_suffix_bj_rejects_non_bse_base(self):
-        assert is_code_like("600519.BJ") is False
+        assert is_code_like_renamed("600519.BJ") is False
 
     def test_suffix_lowercase(self):
-        assert is_code_like("600519.sh") is True
+        assert is_code_like_renamed("600519.sh") is True
 
     # --- HK suffix format ---
     def test_suffix_hk(self):
-        assert is_code_like("00700.HK") is True
+        assert is_code_like_renamed("00700.HK") is True
 
     def test_suffix_hk_lowercase(self):
-        assert is_code_like("00700.hk") is True
+        assert is_code_like_renamed("00700.hk") is True
 
     def test_suffix_hk_short_code(self):
-        assert is_code_like("1810.HK") is True
+        assert is_code_like_renamed("1810.HK") is True
 
     def test_suffix_hk_rejects_6_digit_base(self):
-        assert is_code_like("600519.HK") is False
+        assert is_code_like_renamed("600519.HK") is False
 
     def test_suffix_sh_rejects_5_digit_base(self):
-        assert is_code_like("00700.SH") is False
+        assert is_code_like_renamed("00700.SH") is False
 
     # --- Exchange prefix format (Issue #6 fix) ---
     def test_prefix_sh_upper(self):
-        assert is_code_like("SH600519") is True
+        assert is_code_like_renamed("SH600519") is True
 
     def test_prefix_sh_lower(self):
-        assert is_code_like("sh600519") is True
+        assert is_code_like_renamed("sh600519") is True
 
     def test_prefix_sz(self):
-        assert is_code_like("SZ000001") is True
+        assert is_code_like_renamed("SZ000001") is True
 
     def test_prefix_bj(self):
-        assert is_code_like("BJ920493") is True
+        assert is_code_like_renamed("BJ920493") is True
 
     def test_prefix_bj_rejects_non_bse_base(self):
-        assert is_code_like("BJ600519") is False
+        assert is_code_like_renamed("BJ600519") is False
 
     def test_prefix_hk(self):
-        assert is_code_like("HK00700") is True
+        assert is_code_like_renamed("HK00700") is True
 
     def test_prefix_hk_lower(self):
-        assert is_code_like("hk00700") is True
+        assert is_code_like_renamed("hk00700") is True
 
     def test_prefix_hk_short_code(self):
-        assert is_code_like("HK700") is True
+        assert is_code_like_renamed("HK700") is True
 
     def test_prefix_hk_rejects_6_digit_base(self):
-        assert is_code_like("HK600519") is False
+        assert is_code_like_renamed("HK600519") is False
 
     # --- US tickers ---
     def test_us_ticker(self):
-        assert is_code_like("AAPL") is True
+        assert is_code_like_renamed("AAPL") is True
 
     def test_us_ticker_with_exchange(self):
-        assert is_code_like("TSLA.O") is True
+        assert is_code_like_renamed("TSLA.O") is True
 
     # --- Negative cases ---
     def test_plain_text(self):
-        assert is_code_like("贵州茅台") is False
+        assert is_code_like_renamed("贵州茅台") is False
 
     def test_empty(self):
-        assert is_code_like("") is False
+        assert is_code_like_renamed("") is False
 
     def test_mixed_invalid(self):
-        assert is_code_like("abc123") is False
+        assert is_code_like_renamed("abc123") is False
 
 
 class TestNormalizeCode:

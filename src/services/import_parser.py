@@ -17,7 +17,7 @@ from typing import List, Optional, Tuple
 import pandas as pd
 
 from src.services.name_to_code_resolver import resolve_name_to_code
-from src.services.stock_code_utils import is_code_like, normalize_code
+from src.services.stock_code_utils import is_code_like_renamed, normalize_code
 
 logger = logging.getLogger(__name__)
 
@@ -46,10 +46,10 @@ def _should_use_single_column_fast_path(lines: List[str]) -> bool:
 
     for ln in lines:
         parts = ln.split()
-        if len(parts) >= 2 and is_code_like(parts[0]):
+        if len(parts) >= 2 and is_code_like_renamed(parts[0]):
             # Example: "600519 贵州茅台" / "HK00700 腾讯控股"
             # First token is code-like and tail contains non-code token(s).
-            if any(not is_code_like(p) for p in parts[1:]):
+            if any(not is_code_like_renamed(p) for p in parts[1:]):
                 return False
 
     return True
@@ -100,7 +100,7 @@ def _parse_dataframe(df: pd.DataFrame) -> List[Tuple[Optional[str], Optional[str
             continue
 
         # If "name" value looks like code, use as code
-        if not code_val and name_val and is_code_like(name_val):
+        if not code_val and name_val and is_code_like_renamed(name_val):
             code_val = name_val
             name_val = None
 
@@ -109,7 +109,7 @@ def _parse_dataframe(df: pd.DataFrame) -> List[Tuple[Optional[str], Optional[str
             code = normalize_code(code_val)
             # If code_val is not a valid code, treat as name only when name_val is empty
             # (do not overwrite valid name with dirty code_val, e.g. INVALID,贵州茅台)
-            if not code and not is_code_like(code_val):
+            if not code and not is_code_like_renamed(code_val):
                 if name_val:
                     code = resolve_name_to_code(name_val)
                     # Keep name_val; do not overwrite with code_val

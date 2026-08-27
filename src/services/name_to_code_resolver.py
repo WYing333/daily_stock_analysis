@@ -15,7 +15,7 @@ import time
 from typing import Dict, Optional, Set, Tuple
 
 from src.data.stock_mapping import STOCK_NAME_MAP
-from src.services.stock_code_utils import is_code_like, normalize_code
+from src.services.stock_code_utils import is_code_like_renamed, normalize_code
 
 logger = logging.getLogger(__name__)
 
@@ -29,9 +29,9 @@ def _contains_cjk(text: str) -> bool:
     return any("\u3400" <= ch <= "\u9fff" for ch in text)
 
 
-def _is_code_like(s: str) -> bool:
+def _is_code_like_renamed(s: str) -> bool:
     """Backward-compatible wrapper of shared code-like check."""
-    return is_code_like(s)
+    return is_code_like_renamed(s)
 
 
 def _normalize_code(raw: str) -> Optional[str]:
@@ -160,7 +160,7 @@ def resolve_name_to_code(name: str) -> Optional[str]:
         return None
 
     # 1. Input looks like code
-    if _is_code_like(s):
+    if _is_code_like_renamed(s):
         return _normalize_code(s)
 
     # 2. Local reverse map (no duplicates)

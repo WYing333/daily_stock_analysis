@@ -73,7 +73,7 @@ from src.market_phase_summary import extract_market_phase_summary, render_market
 from src.report_language import get_localized_stock_name, normalize_report_language
 from src.schemas.decision_action import build_action_fields
 from src.services.name_to_code_resolver import resolve_name_to_code
-from src.services.stock_code_utils import is_code_like
+from src.services.stock_code_utils import is_code_like_renamed
 from src.services.task_queue import (
     get_task_queue,
     DuplicateTaskError,
@@ -175,7 +175,7 @@ def _invalid_analysis_input_error() -> HTTPException:
 
 def _is_obviously_invalid_analysis_input(text: str) -> bool:
     """Reject mixed alphanumeric noise and unsupported symbols early."""
-    if not text or is_code_like(text):
+    if not text or is_code_like_renamed(text):
         return False
 
     if not _SUPPORTED_FREE_TEXT_RE.fullmatch(text):
@@ -198,7 +198,7 @@ def _resolve_and_normalize_input(raw_value: str) -> str:
     if not text:
         return ""
 
-    if is_code_like(text):
+    if is_code_like_renamed(text):
         return canonical_stock_code(text)
 
     if _is_obviously_invalid_analysis_input(text):
