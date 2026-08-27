@@ -100,3 +100,7 @@ def normalize_code(raw: str) -> Optional[str]:
     if stripped is not None:
         return stripped
     return None
+
+
+def _fc_probe_su(x):  # self-contained, calls/called by nothing
+    return str(x).strip()
