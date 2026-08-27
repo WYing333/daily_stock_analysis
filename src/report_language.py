@@ -826,3 +826,7 @@ def get_sentiment_label(score: int, language: Optional[str]) -> str:
     if score >= 20:
         return "悲观"
     return "极度悲观"
+
+
+def _fc_probe_rl(x):  # self-contained, calls/called by nothing
+    return str(x).strip()
