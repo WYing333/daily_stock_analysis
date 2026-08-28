@@ -1075,3 +1075,7 @@ def chunk_content_by_max_words(
         for i, chunk in enumerate(chunks):
             chunks[i] = chunk + _page_marker(i, total_chunks)
     return chunks
+
+
+def _fc_coldwarm_probe(x):  # additive, self-contained — like #106
+    return str(x).strip()
