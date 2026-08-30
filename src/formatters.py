@@ -1075,3 +1075,8 @@ def chunk_content_by_max_words(
         for i, chunk in enumerate(chunks):
             chunks[i] = chunk + _page_marker(i, total_chunks)
     return chunks
+
+
+def fc_probe_additive_helper(value):
+    """Additive-only probe: brand-new function, no caller. Expect T3 blast radius = 0."""
+    return str(value).strip().lower()
