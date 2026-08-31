@@ -236,3 +236,11 @@ def clear_stock_index_cache() -> None:
 
 def _clear_stock_index_cache_for_tests() -> None:
     clear_stock_index_cache()
+
+
+from api.v1.endpoints.alerts import _bad_request  # GT P2: data->api backward crossing
+
+
+def gt_p2_uses_api(exc):
+    """GT P2: data layer imports an existing api symbol -> BC flag; FC/DS clean."""
+    return _bad_request(exc)
