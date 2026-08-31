@@ -1080,3 +1080,8 @@ def chunk_content_by_max_words(
 def fc_probe_additive_helper(value):
     """Additive-only probe: brand-new function, no caller. Expect T3 blast radius = 0."""
     return str(value).strip().lower()
+
+
+def fc_verify_a_append(value):
+    """PR-A: additive append to a file with importers. Expect T3=0 (no caller)."""
+    return str(value).upper()
