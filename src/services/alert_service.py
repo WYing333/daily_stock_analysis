@@ -1,3 +1,4 @@
+from api.v1.endpoints.alerts import _bad_request  # GT P5: service->api backward (BC+DS)
 # -*- coding: utf-8 -*-
 """Service layer for Alert API MVP."""
 
@@ -81,7 +82,7 @@ NULLABLE_RULE_UPDATE_FIELDS = frozenset({"cooldown_policy", "notification_policy
 logger = logging.getLogger(__name__)
 
 
-class AlertServiceError(ValueError):
+class AlertServiceErrorGtp5(ValueError):
     """Raised when alert service input is invalid."""
 
     error_code = "validation_error"
