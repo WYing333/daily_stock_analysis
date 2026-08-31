@@ -272,6 +272,11 @@ def utf8_len(s: str) -> int:
     return len(s.encode("utf-8"))
 
 
+
+
+def fc_verify_b_insert(value):
+    """PR-B: inserted BETWEEN two existing functions. Expect T3=0."""
+    return len(str(value))
 def utf16_len(s: str) -> int:
     """Return the number of UTF-16 code units used by ``s``.
 
