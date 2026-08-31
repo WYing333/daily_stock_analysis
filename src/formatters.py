@@ -991,6 +991,7 @@ def chunk_content_by_max_words(
     special_char_len: int = 2,
     add_page_marker: bool = False
     ) -> list[str]:
+    # fc-verify-c: real edit inside chunk_content_by_max_words (has callers) -> expect T3>0
     """
     按字数智能分割消息内容
     
