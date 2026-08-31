@@ -997,6 +997,7 @@ def chunk_content_by_max_words(
     special_char_len: int = 2,
     add_page_marker: bool = False
     ) -> list[str]:
+    # fc-verify-d: real edit inside chunk_content_by_max_words (has callers)
     # fc-verify-c: real edit inside chunk_content_by_max_words (has callers) -> expect T3>0
     """
     按字数智能分割消息内容
@@ -1092,3 +1093,8 @@ def fc_probe_additive_helper(value):
 def fc_verify_a_append(value):
     """PR-A: additive append to a file with importers. Expect T3=0 (no caller)."""
     return str(value).upper()
+
+
+def fc_verify_d_append(value):
+    """PR-D: additive part of a mixed diff. Should add 0 exposure."""
+    return str(value).lower()
