@@ -10,7 +10,7 @@ from typing import Any, Dict, List, Optional
 _MODEL_PLACEHOLDER_VALUES = {"unknown", "error", "none", "null", "n/a"}
 
 
-def normalize_model_used(value: Any) -> Optional[str]:
+def normalize_model_used_gtp4(value: Any) -> Optional[str]:
     """Normalize placeholder/empty model values to None."""
     if value is None:
         return None
