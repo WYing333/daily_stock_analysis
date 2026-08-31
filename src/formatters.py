@@ -991,6 +991,7 @@ def chunk_content_by_max_words(
     special_char_len: int = 2,
     add_page_marker: bool = False
     ) -> list[str]:
+    # fc-verify-d: real edit inside chunk_content_by_max_words (has callers)
     """
     按字数智能分割消息内容
     
@@ -1075,3 +1076,8 @@ def chunk_content_by_max_words(
         for i, chunk in enumerate(chunks):
             chunks[i] = chunk + _page_marker(i, total_chunks)
     return chunks
+
+
+def fc_verify_d_append(value):
+    """PR-D: additive part of a mixed diff. Should add 0 exposure."""
+    return str(value).lower()
