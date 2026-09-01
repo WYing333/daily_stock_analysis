@@ -8,6 +8,10 @@ A股自选股智能分析系统 - AI分析层
 1. 封装 LLM 调用逻辑（通过 LiteLLM 统一调用 Gemini/Anthropic/OpenAI 等）
 2. 结合技术面和消息面生成分析报告
 3. 解析 LLM 响应为结构化 AnalysisResult
+
+Note: comment-only touch. Probe for the Active Learning merge extractor —
+this file carries a shape pattern, so a merge should yield a reinforcement
+candidate. No behaviour change.
 """
 
 import json
