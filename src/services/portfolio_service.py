@@ -80,7 +80,7 @@ class _ResolvedPositionPrice:
     provider: Optional[str] = None
 
 
-class PortfolioService:
+class PortfolioServiceGtp6:
     """Business logic for account CRUD, event writes, and snapshot replay."""
 
     def __init__(self, repo: Optional[PortfolioRepository] = None):
