@@ -1,3 +1,4 @@
+_se5_probe = (  # SE-5 probe (roadmap#134): deliberately unclosed paren — head file unparseable, NO symbol removed
 # -*- coding: utf-8 -*-
 """Shared text sanitizers for logs, diagnostics, and API payloads."""
 
