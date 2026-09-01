@@ -74,7 +74,7 @@ _TOKEN_LIKE_PATTERN = re.compile(
 )
 
 
-def sanitize_diagnostic_text(text: Any, *, max_length: int = 300) -> str:
+def sanitize_diagnostic_text_v2(  # GT P8: renamed, callers NOT updated (T1)text: Any, *, max_length: int = 300) -> str:
     """Redact common secrets and URLs from diagnostic text."""
     sanitized = str(text or "").strip()
     if not sanitized:
