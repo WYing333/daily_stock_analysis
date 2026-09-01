@@ -22,7 +22,7 @@ def normalize_model_used(value: Any) -> Optional[str]:
     return text
 
 
-def parse_json_field(value: Any) -> Any:
+def parse_json_field(value: Any, mode: str) -> Any:  # GT P7: added required param, call sites NOT updated (T2)
     """Best-effort JSON parse for string values; passthrough for others."""
     if value is None:
         return None
