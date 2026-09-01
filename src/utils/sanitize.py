@@ -87,7 +87,8 @@ def sanitize_diagnostic_text(text: Any, *, max_length: int = 300) -> str:
     return " ".join(sanitized.split())[:max_length]
 
 
-def redact_sensitive_mapping(obj: Any) -> Any:
+# GT: renamed a called function, caller (analysis_repo) NOT updated -> true-positive T1
+def redact_sensitive_mapping_v2(obj: Any) -> Any:
     """Recursively redact sensitive values from mappings by key name only.
 
     This helper intentionally does not inspect arbitrary string values. P1 only
