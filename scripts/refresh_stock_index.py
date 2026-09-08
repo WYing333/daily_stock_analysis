@@ -80,9 +80,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         _sync_static_index()
 
         # Pick up STOCK_LIST edits made alongside an index refresh.
-        from src.config import refresh_stock_list
+        from src.config import get_config
 
-        refresh_stock_list()
+        get_config().refresh_stock_list()
 
     except subprocess.CalledProcessError as exc:
         print(
