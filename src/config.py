@@ -2879,6 +2879,11 @@ def get_config() -> Config:
     return Config.get_instance()
 
 
+def refresh_stock_list() -> None:
+    """Hot-reload STOCK_LIST on the global config instance (module-level shortcut)."""
+    get_config().refresh_stock_list()
+
+
 # ============================================================
 # Shared LLM helpers (used by both analyzer and agent/llm_adapter)
 # ============================================================

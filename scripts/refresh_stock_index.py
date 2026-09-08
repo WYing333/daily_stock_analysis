@@ -79,6 +79,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         _run([sys.executable, "scripts/generate_index_from_csv.py", "--source", "tushare"])
         _sync_static_index()
 
+        # Pick up STOCK_LIST edits made alongside an index refresh.
+        from src.config import refresh_stock_list
+
+        refresh_stock_list()
+
     except subprocess.CalledProcessError as exc:
         print(
             f"[refresh_stock_index] ERROR: command failed with exit code {exc.returncode}",
