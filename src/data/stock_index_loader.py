@@ -236,11 +236,3 @@ def clear_stock_index_cache() -> None:
 
 def _clear_stock_index_cache_for_tests() -> None:
     clear_stock_index_cache()
-
-
-from api.v1._gt_bc_target import gt_bc_target  # GT P9: data->api backward CALL
-
-
-def gt_p9_calls_api(x):
-    """GT P9: data layer CALLS an api symbol -> BC flag; FC/DS clean."""
-    return gt_bc_target(x)
