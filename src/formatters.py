@@ -997,8 +997,6 @@ def chunk_content_by_max_words(
     Args:
         content: 完整消息内容
         max_words: 单条消息最大字数
-        special_char_len: 每个特殊字符的长度，默认为 2
-        add_page_marker: 是否添加分页标记
         
     Returns:
         分割后的区块列表
