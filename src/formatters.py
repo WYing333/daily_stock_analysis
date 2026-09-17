@@ -985,11 +985,6 @@ def _chunk_by_max_words(content: str, max_words: int, special_char_len: int = 2)
     return sections
 
 
-def fc_verify_g_between(value):
-    """G-A: uncalled fn inserted directly BEFORE chunk_content_by_max_words. Expect T3=0."""
-    return len(str(value))
-
-
 def chunk_content_by_max_words(
     content: str, 
     max_words: int, 
@@ -1080,3 +1075,8 @@ def chunk_content_by_max_words(
         for i, chunk in enumerate(chunks):
             chunks[i] = chunk + _page_marker(i, total_chunks)
     return chunks
+
+
+def fc_verify_g_append(value):
+    """G-B: additive part; keeps method granularity. Adds 0 exposure."""
+    return str(value)
