@@ -20,6 +20,7 @@ MIN_MAX_WORDS = 10
 MIN_MAX_BYTES = 40
 FENCED_CODE_BLOCK_RE = re.compile(r"(^```[^\n]*\n.*?^```[ \t]*$)", re.MULTILINE | re.DOTALL)
 FENCED_CODE_BLOCK_PLACEHOLDER = "@@DSA_FENCED_CODE_BLOCK_{}@@"
+# fc-verify-h: module-level-only edit, touches no function (roadmap#134 SE-9)
 
 # Unicode code point ranges for special characters.
 _SPECIAL_CHAR_RANGE = (0x10000, 0xFFFFF)
