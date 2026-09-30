@@ -230,3 +230,8 @@ def _mapping_key_parts(key_text: str) -> list[str]:
         for part in re.split(r"[^A-Za-z0-9]+", split_camel)
         if part
     ]
+
+
+def fc_verify_i_append(value):
+    """I: uncalled fn; gives the PR one parsed method range. Adds 0 exposure."""
+    return str(value)
